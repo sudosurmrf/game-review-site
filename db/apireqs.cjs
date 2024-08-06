@@ -5,7 +5,7 @@ const getProducts = async() => {
     const { rows } = await client.query(`
       SELECT * FROM products;`)
 
-      return rows;
+    return rows;
 
   }catch(err){
     console.log('couldnt grab products', err)
@@ -13,13 +13,13 @@ const getProducts = async() => {
 
 }
 
-const getSingleProduct = async(product) => {
+const getSingleProduct = async(productName) => {
   try{
     const { rows: products } = await client.query(`
       SELECT * FROM products
-      WHERE productname=$1;`,[product]);
+      WHERE productname=$1;`,[productName]);
 
-      return products[0]
+    return products[0]
 
   }catch(err){
     console.log('couldnt get individual product', err)

@@ -20,6 +20,22 @@ app.get('/products', async (req, res, next) => {
   }
 })
 
+app.get('/products/:product', async(req, res, next) => {
+  try{
+    const productName = req.params.product;
+    const product = await getSingleProduct(productName);
+    if(product) {
+      res.json(product);
+
+    }else {
+      console.log(err);
+      res.status(500).send('Server Error')
+    }
+
+  }catch(err){
+    res.status(500).send('no page available')
+  }
+})
 
 
 const PORT = process.env.PORT || 3000;

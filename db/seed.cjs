@@ -92,9 +92,9 @@ const seedProducts = async () => {
   try {
     await client.query(`
       INSERT INTO products (productname, description) VALUES
-      ('Product 1', 'Description for product 1'),
-      ('Product 2', 'Description for product 2'),
-      ('Product 3', 'Description for product 3');
+      ('product1', 'Description for product 1'),
+      ('product2', 'Description for product 2'),
+      ('product3', 'Description for product 3');
     `);
     console.log('Products seeded successfully');
   } catch (err) {
