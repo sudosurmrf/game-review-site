@@ -4,7 +4,7 @@ const express = require('express');
 const client = require('./db/client.cjs');
 const app = express();
 const  { createUser, getUserInfo }= require('./db/users.cjs');
-const { getProducts, getSingleProduct } = require('./db/apireqs.cjs');
+const { getProducts, getProductWithReviews } = require('./db/apireqs.cjs');
 
 app.use(express.json());
 
@@ -23,7 +23,7 @@ app.get('/products', async (req, res, next) => {
 app.get('/products/:product', async(req, res, next) => {
   try{
     const productName = req.params.product;
-    const product = await getSingleProduct(productName);
+    const product = await getProductWithReviews(productName);
     if(product) {
       res.json(product);
 
@@ -36,6 +36,7 @@ app.get('/products/:product', async(req, res, next) => {
     res.status(500).send('no page available')
   }
 })
+
 
 
 const PORT = process.env.PORT || 3000;
